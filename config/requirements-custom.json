@@ -1,0 +1,116 @@
+{
+  "title": "新平台业务需求说明",
+  "header": "业务需求说明",
+  "footer": "新平台重建资料",
+  "purpose": "供新平台开发与流程配置使用。",
+  "sections": [
+    {
+      "key": "scope",
+      "title": "业务概述"
+    },
+    {
+      "key": "association",
+      "title": "前置业务与数据关联"
+    },
+    {
+      "key": "flow",
+      "title": "完整业务流程"
+    },
+    {
+      "key": "roles",
+      "title": "流程节点与办理角色"
+    },
+    {
+      "key": "fields",
+      "title": "表单字段清单"
+    },
+    {
+      "key": "nodeEvidence",
+      "title": "核心办理节点图文说明"
+    },
+    {
+      "key": "approvals",
+      "title": "业务分支与流转规则"
+    },
+    {
+      "key": "questions",
+      "title": "待确认事项"
+    }
+  ],
+  "appendix": {
+    "flow": "附录 A  完整业务流程图",
+    "forms": "附录 B  各阶段表单及办理节点参考图",
+    "flowNote": "图中保留编辑器中的节点位置、连线与分支标签。节点密集处可放大查看，也可打开同目录的 workflow-original.svg。",
+    "formNote": "各图按办理顺序排列，分支内的先后以附录 A 为准。办事说明和其他已实测页面使用前台截图，其余使用 XSN 静态预览。新平台可重新设计页面样式。"
+  },
+  "word": {
+    "font": "Microsoft YaHei",
+    "bodyPt": 10.5,
+    "titlePt": 22,
+    "headingPt": 13,
+    "subheadingPt": 11,
+    "tablePt": 9.5,
+    "accent": "174A70",
+    "muted": "506476",
+    "headerFill": "EAF3F9",
+    "border": "D9D9D9",
+    "page": {
+      "width": 11906,
+      "height": 16838,
+      "top": 1134,
+      "bottom": 1020,
+      "left": 1134,
+      "right": 1134,
+      "header": 454,
+      "footer": 510
+    },
+    "diagramPage": {
+      "width": 23811,
+      "height": 16838,
+      "top": 709,
+      "bottom": 709,
+      "left": 709,
+      "right": 709,
+      "header": 283,
+      "footer": 283
+    },
+    "formPage": {
+      "width": 16838,
+      "height": 23810,
+      "top": 936,
+      "bottom": 749,
+      "left": 965,
+      "right": 965,
+      "header": 360,
+      "footer": 360
+    },
+    "approvalsColumns": [
+      33,
+      67
+    ],
+    "fieldsColumns": [
+      14,
+      20,
+      14,
+      14,
+      16,
+      22
+    ],
+    "formPanelPolicy": "representative",
+    "specialFieldsColumns": [
+      20,
+      18,
+      30,
+      32
+    ]
+  },
+  "specialFields": {
+    "title": "特殊字段的阶段与来源规则",
+    "headers": [
+      "字段名称",
+      "适用阶段",
+      "字段来源及限制",
+      "显示与填写规则"
+    ]
+  }
+}

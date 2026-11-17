@@ -1,0 +1,8 @@
+node_modules/
+/chrome-profile/
+output/
+raw/
+*.har
+*.xsn
+.env*
+/config/workflow-inputs/*.json

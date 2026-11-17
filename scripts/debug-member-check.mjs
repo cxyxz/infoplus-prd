@@ -1,0 +1,3 @@
+import {attachChrome} from '../src/live-options.mjs';import {chooseDebugMember} from '../src/debug-runtime.mjs';import {readFile} from 'node:fs/promises';
+const dir='E:/infoplus/output/Z0095/20260428-104555',project=JSON.parse(await readFile(dir+'/project.json','utf8')),c=await attachChrome();
+try{const page=c.context.pages().find(p=>p.url().includes('/15549561/render'));for(const fieldId of ['fieldNBLDXZXZ','fieldJGDWDWFZR','fieldDWXZFZR','fieldXZJGDWFZR'])console.log(JSON.stringify(await chooseDebugMember(page,dir,project,{scope:'Z0095@20260428-104555',instanceId:'c68e706a-681a-4d9b-bd74-e9be121eeb5d',fieldId})));}finally{await c.close()}

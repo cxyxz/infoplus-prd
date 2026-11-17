@@ -1,0 +1,7 @@
+import {attachChrome} from '../src/live-options.mjs';import {readDebugStep} from '../src/debug-session.mjs';import {readFile} from 'node:fs/promises';
+const d='E:/infoplus/output/Z0095/20260428-104555',p=JSON.parse(await readFile(d+'/project.json','utf8')),c=await attachChrome();
+try{const page=c.context.pages().find(p=>p.url().includes('/15544135/render'));await readDebugStep(page,p,'c68e706a-681a-4d9b-bd74-e9be121eeb5d');
+const values={V0_CTRL29:'DEBUG测试出境口岸',V0_CTRL319:'DEBUG测试入境口岸',V0_CTRL347:'Z0095 DEBUG测试，非真实出访',V0_CTRL323_0:'东京',V0_CTRL54_0:'东京',V0_CTRL55_0:'东京',V0_CTRL117_0:'DEBUG测试合作研究',V0_CTRL288_0_0:'DEBUG测试邀请人',V0_CTRL290_0_0:'00000000000',V0_CTRL294_0_0:'DEBUG Test',V0_CTRL291_0_0:'DEBUG测试邀请单位',V0_CTRL292_0_0:'DEBUG Test Institution',V0_CTRL221:'1',V0_CTRL225:'0',V1_CTRL73:'DEBUG测试系所',V1_CTRL59_0:'DEBUG测试关系',V1_CTRL60_0:'DEBUG测试家属',V1_CTRL61_0:'30',V1_CTRL63_0:'DEBUG测试单位'};
+for(const [id,value] of Object.entries(values)){await page.evaluate(({id,value})=>{const e=document.getElementById(id);if(!e||e.disabled||e.readOnly)throw Error('not editable');e.value=value;window.jQuery(e).trigger('input').trigger('change');},{id,value});await new Promise(r=>setTimeout(r,600));await page.waitForFunction(()=>!window.jQuery?.active,{},{timeout:6000,polling:100}).catch(()=>{});}
+console.log(await page.evaluate(ids=>ids.map(id=>({id,filled:!!document.getElementById(id)?.value})),Object.keys(values)));
+}finally{await c.close()}

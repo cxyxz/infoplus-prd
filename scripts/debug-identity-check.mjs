@@ -1,0 +1,2 @@
+import {attachChrome} from '../src/live-options.mjs';import {chooseDebugIdentity,captureDebugStep} from '../src/debug-runtime.mjs';import {readFile} from 'node:fs/promises';const d='E:/infoplus/output/Z0095/20260428-104555',p=JSON.parse(await readFile(d+'/project.json','utf8')),c=await attachChrome();try{const page=c.context.pages().find(p=>p.url().includes('/'+process.argv[2]+'/render'));console.log(await chooseDebugIdentity(page));console.log((await captureDebugStep(page,d,p,'c68e706a-681a-4d9b-bd74-e9be121eeb5d',undefined)).state);}finally{await c.close()}
+

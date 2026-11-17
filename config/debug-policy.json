@@ -1,0 +1,9 @@
+{
+  "preferred": true,
+  "autoRun": true,
+  "allowNormalWorkflowActions": true,
+  "allowExistingWorkflowCallbacks": true,
+  "fallbackToFrontend": true,
+  "maxRetries": 2,
+  "maxInstancesPerWorkflow": 3
+}
