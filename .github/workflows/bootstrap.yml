@@ -8,5 +8,44 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Apply payload 01
-        run: node .github/scripts/apply-payload.mjs .github/payloads/bootstrap-payload-01.txt
+
+      - name: Restore payloads
+        run: |
+          node .github/scripts/apply-payload.mjs .github/payloads/bootstrap-payload-01.txt
+          node .github/scripts/apply-payload.mjs .github/payloads/bootstrap-payload-02.txt
+          mkdir -p packaging/plugin/skills/infoplus-prd
+          cp -r .agents/skills/infoplus-prd/. packaging/plugin/skills/infoplus-prd/
+
+      - name: Configure git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Commit restored files
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "Bootstrap InfoPlus PRD source and packaging"
+          git push
+
+      - name: Build release assets
+        run: |
+          mkdir -p dist/runtime dist/plugin
+          cp -r src scripts config docs tests package.json package-lock.json README.md CHANGELOG.md .gitignore infoplus-prd.cmd start-infoplus-chrome.ps1 dist/runtime/
+          cp -r packaging/plugin/. dist/plugin/
+          cd dist/runtime
+          zip -qr ../infoplus-prd-runtime-1.3.1.zip .
+          cd ../plugin
+          zip -qr ../infoplus-prd-plugin-1.3.1.zip .
+          cd ../..
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view v1.3.1 >/dev/null 2>&1; then
+            gh release upload v1.3.1 dist/infoplus-prd-runtime-1.3.1.zip dist/infoplus-prd-plugin-1.3.1.zip --clobber
+          else
+            gh release create v1.3.1 dist/infoplus-prd-runtime-1.3.1.zip dist/infoplus-prd-plugin-1.3.1.zip \
+              --title v1.3.1 \
+              --notes "Windows runtime and Codex plugin package for InfoPlus PRD 1.3.1"
+          fi
